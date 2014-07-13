@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <title>OpenLayers Example</title>
+		<script type="text/javascript" src="http://webviewer-api.navionics.com/static/js/proj4js/lib/proj4js-compressed.js"></script>
+		<script type="text/javascript" src="http://webviewer-api.navionics.com/static/js/OpenLayers/OpenLayers.js"></script>
+		<script type="text/javascript" src="http://webviewer-api.navionics.com/static/js/navionics/apimaps.js"></script>
+        <script src="http://maps.google.com/maps/api/js?sensor=false&v=3.2"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+		<script src="http://openweathermap.org/js/OWM.OpenLayers.1.3.4.js" ></script>
+		
+		
+		<link rel="stylesheet" href="css/main.css"/>
+		<link rel="stylesheet" href="code/theme/default/style.css"/>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	
+		<script>
+		$(function() {
+		$( "#top_menu" ).buttonset();
+		});
+</script>
+                
+    </head>
+    <body>
+	
+		<header id="top_header">
+			<span id="title"><h1>OpenLayer Demo.....</h1></span>
+			<span id="search">
+					<form name="input" action="javascript: submitform();" method="post">
+					<label for="query">Search for Location:</label> <input type="text" id="query" maxlength="50" name="query" value="Sydney"/>
+					<input type="submit" value="Submit"/>
+					</form>
+			</span>
+		</header>
+		<nav id="top_menu">
+			<ul id="controlToggle">
+			<li>
+					
+				<a title="decrease opacity" href="javascript: changeOpacity(-0.1);">&lt;&lt;</a>
+				<input id="opacity" type="text" value="0.3" size="3" disabled="true" />
+				<a title="increase opacity" href="javascript: changeOpacity(0.1);">&gt;&gt;</a>
+
+			</li>
+				<li>
+					<input type="radio" name="type" value="none" id="noneToggle"
+						   onclick="toggleControl(this);" checked="checked" />
+					<label for="noneToggle">Navigate</label>
+				</li>
+				<li>
+					<input type="radio" name="type" value="line" id="lineToggle" onclick="toggleControl(this);" />
+					<label for="lineToggle">Measure Distance</label>
+				</li>
+				<li>
+					<input type="radio" name="type" value="polygon" id="polygonToggle" onclick="toggleControl(this);" />
+					<label for="polygonToggle">Measure Area</label>
+				</li>
+				<li>
+					<input type="checkbox" name="geodesic" id="geodesicToggle" onclick="toggleGeodesic(this);" />
+					<label for="geodesicToggle">Geodesic Measures</label>
+				</li>
+				<li>
+					<input type="checkbox" name="immediate" id="immediateToggle" onclick="toggleImmediate(this);" />
+					<label for="immediateToggle">Immediate Measures</label>
+				</li>
+	
+			</ul>
+		   
+		</nav>
+	
+	<div id="map" div>	
+	
+	
+	<footer id="output"></footer>
+    <script src="newproj.js"></script>
+        
+     
+    </body>
+</html>

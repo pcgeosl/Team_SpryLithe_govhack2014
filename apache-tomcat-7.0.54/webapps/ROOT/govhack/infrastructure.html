@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SpryLithe Govhack 2014- Infrastructure</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <!-- Include OpenLayers library -->
+        <script type="text/javascript" src="js/OpenLayers-2.11/lib/OpenLayers.js"></script>
+        <!-- OpenLayers Theme -->
+        <link rel="stylesheet" href="js/OpenLayers-2.11/theme/default/style.css" type="text/css">
+        <style>
+            html, body {
+                width: 100%; 
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+
+        <!-- The magic comes here -->
+        <script type="text/javascript">
+            function init() {
+                // Create the map using the specified DOM element
+                var map = new OpenLayers.Map("rcp1_map");
+    
+                // Create an OpenStreeMap raster layer and add to the map
+                //var osm = new OpenLayers.Layer.OSM();
+				    // Add a WMS layer
+    var wms = new OpenLayers.Layer.WMS("Basic", "http://vmap0.tiles.osgeo.org/wms/vmap0",
+    {
+        layers: 'basic'
+    });
+
+					    // Add local geoserver WMS layer
+    var Railways = new OpenLayers.Layer.WMS("Railways", "http://localhost:8088/geoserver/wms",
+    {
+        layers: "govhack2014:Railways",
+        transparent: true,
+        //format: 'image/png'
+    },
+    {
+         isBaseLayer: false,
+		visibility: false
+    });
+	//govhack2014:Company_Surveys
+	    var Company_Surveys = new OpenLayers.Layer.WMS("Company Surveys", "http://localhost:8088/geoserver/wms",
+    {
+        layers: "govhack2014:Company_Surveys",
+        transparent: true,
+    },
+    {
+        isBaseLayer: false,
+		visibility: false
+    });
+	
+		//govhack2014:Roads
+	    var Roads = new OpenLayers.Layer.WMS("Roads", "http://localhost:8088/geoserver/wms",
+    {
+        layers: "govhack2014:Roads",
+        transparent: true,
+    },
+    {
+        isBaseLayer: false,
+		visibility: false
+    });
+	
+		//govhack2014:AHGFAquiferBoundary
+	    var AHGFAquiferBoundary = new OpenLayers.Layer.WMS("Aquifer Boundary", "http://localhost:8088/geoserver/wms",
+    {
+        layers: "govhack2014:AHGFAquiferBoundary",
+        transparent: true,
+    },
+    {
+        isBaseLayer: false,
+		visibility: false
+    });
+	
+		//govhack2014:LandCover
+	    var LandCover = new OpenLayers.Layer.WMS("LandCover", "http://localhost:8088/geoserver/wms",
+    {
+        layers: "govhack2014:LandCover",
+        transparent: true,
+    },
+    {
+        isBaseLayer: false,
+		visibility: false
+    });
+	
+	
+		//govhack2014:MagneticImage
+	    var MagneticImage = new OpenLayers.Layer.WMS("MagneticImage", "http://localhost:8088/geoserver/wms",
+    {
+        layers: "govhack2014:MagneticImage",
+        transparent: true,
+    },
+    {
+        isBaseLayer: false,
+		visibility: false
+    });
+	
+	
+		//govhack2014:bores
+	    var bores = new OpenLayers.Layer.WMS("Bores", "http://localhost:8088/geoserver/wms",
+    {
+        layers: "govhack2014:bores",
+        transparent: true,
+    },
+    {
+        isBaseLayer: false,
+		visibility: false
+    });
+	
+			//govhack2014:AHGFWaterbody
+	    var AHGFWaterbody = new OpenLayers.Layer.WMS("Waterbody", "http://localhost:8088/geoserver/wms",
+    {
+        layers: "govhack2014:AHGFWaterbody",
+        transparent: true,
+    },
+    {
+        isBaseLayer: false,
+		visibility: false
+    });
+	
+				//govhack2014:Surface_Network_2.1
+	    var LandCover = new OpenLayers.Layer.WMS("Land Cover", "http://localhost:8088/geoserver/wms",
+    {
+        layers: "govhack2014:LandCover",
+        transparent: true,
+    },
+    {
+        isBaseLayer: false,
+		visibility: false
+    });
+	
+
+	
+                map.addLayers([wms, Roads, Railways, LandCover]);
+    
+                // Set view to zoom maximum map extent
+                map.zoomToMaxExtent();
+				    // Add layer switcher control
+    map.addControl(new OpenLayers.Control.LayerSwitcher());
+    // Set the center of the view
+    map.setCenter(new OpenLayers.LonLat(134.60,-26.93), 5);
+            }
+        </script>
+    </head>
+    <body onload="init()">
+        <div id="rcp1_map" style="width: 100%; height: 100%;"></div>
+    </body>
+</html>
